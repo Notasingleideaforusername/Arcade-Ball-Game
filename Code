@@ -1,0 +1,322 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+
+int x = -8;
+int y = -8;
+int score = 9;
+
+bool kolizja(TImage * pilka, TImage * cegla)
+{
+if(pilka -> Left >= cegla -> Left - pilka -> Width &&
+   pilka -> Left <= cegla -> Left + cegla -> Width &&
+   pilka -> Top >= cegla -> Top - pilka -> Height &&
+   pilka -> Top <= cegla -> Top + cegla -> Height)
+   {
+     return true;
+   }
+   else return false;
+}
+
+
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TimerPilkaTimer(TObject *Sender)
+{
+B -> Left +=x;
+B -> Top +=y;
+
+/*borders collision
+if(B -> Left -5 <= Tlo -> Left) x= -x;
+if(B -> Top -5 <= Tlo -> Top) y= -y;
+if(B -> Left + B -> Width +5 >= Tlo -> Width) x= -x;
+added to slower timer so it lowers the chance of ball getting stuck near the border*/
+
+//lose
+if(B -> Top >= P -> Top + P -> Height -10)
+{
+TimerPilka -> Enabled - false;
+B -> Visible = false;
+Button1 -> Caption = "You lose! Wanna try again?";
+Button1 -> Visible = true;
+}
+//P reflects the ball
+//left
+else if ((B -> Left + B -> Width > P -> Left) &&
+  (B -> Left + B -> Width/2 < P -> Left + 30) &&
+  (B -> Top + B -> Height > P -> Top))
+{
+    if(y>0)
+    {
+    y = -y;
+    x = x - 2;
+    }
+}
+//right
+else if ((B -> Left < P -> Left + P -> Width) &&
+  (B -> Left + B -> Width/2 > P -> Left + 60) &&
+  (B -> Top + B -> Height > P -> Top))
+{
+    if(y>0)
+    {
+    y = -y;
+    x = x + 2;
+    }
+}
+//straight
+else if ((B -> Left > P -> Left - B -> Width/2)&&
+      (B -> Left < P -> Left+ P -> Width) &&
+      (B -> Top + B -> Height > P -> Top))
+{
+    if(y>0) y = -y;
+}
+
+
+//block1
+if((kolizja(B, Image1)==true) &&
+   (Image1 -> Visible == true))
+   {
+    x = -x;
+    y = -y;
+    Image1 -> Visible = false;
+    score--;
+    if(score == 0)
+    {
+       TimerPilka -> Enabled = false;
+       B -> Visible = false;
+       Button1 -> Caption = "You win!";
+       Button1 -> Visible = true;
+    }
+   }
+
+   //block2
+if((kolizja(B, Image2)==true) &&
+   (Image2 -> Visible == true))
+   {
+    x = -x;
+    y = -y;
+    Image2 -> Visible = false;
+    score--;
+    if(score == 0)
+    {
+       TimerPilka -> Enabled = false;
+       B -> Visible = false;
+       Button1 -> Caption = "You win!";
+       Button1 -> Visible = true;
+    }
+   }
+
+   //block3
+if((kolizja(B, Image3)==true) &&
+   (Image3 -> Visible == true))
+   {
+    x = -x;
+    y = -y;
+    Image3 -> Visible = false;
+    score--;
+    if(score == 0)
+    {
+       TimerPilka -> Enabled = false;
+       B -> Visible = false;
+       Button1 -> Caption = "You win!";
+       Button1 -> Visible = true;
+    }
+   }
+
+   //block4
+if((kolizja(B, Image4)==true) &&
+   (Image4 -> Visible == true))
+   {
+    x = -x;
+    y = -y;
+    Image4 -> Visible = false;
+    score--;
+    if(score == 0)
+    {
+       TimerPilka -> Enabled = false;
+       B -> Visible = false;
+       Button1 -> Caption = "You win!";
+       Button1 -> Visible = true;
+    }
+   }
+
+   //block5
+if((kolizja(B, Image5)==true) &&
+   (Image5 -> Visible == true))
+   {
+    x = -x;
+    y = -y;
+    Image5 -> Visible = false;
+    score--;
+    if(score == 0)
+    {
+       TimerPilka -> Enabled = false;
+       B -> Visible = false;
+       Button1 -> Caption = "You win!";
+       Button1 -> Visible = true;
+    }
+   }
+
+   //block6
+if((kolizja(B, Image6)==true) &&
+   (Image6 -> Visible == true))
+   {
+    x = -x;
+    y = -y;
+    Image6 -> Visible = false;
+    score--;
+    if(score == 0)
+    {
+       TimerPilka -> Enabled = false;
+       B -> Visible = false;
+       Button1 -> Caption = "You win!";
+       Button1 -> Visible = true;
+    }
+   }
+
+   //block7
+if((kolizja(B, Image7)==true) &&
+   (Image7 -> Visible == true))
+   {
+    x = -x;
+    y = -y;
+    Image7 -> Visible = false;
+    score--;
+    if(score == 0)
+    {
+       TimerPilka -> Enabled = false;
+       B -> Visible = false;
+       Button1 -> Caption = "You win!";
+       Button1 -> Visible = true;
+    }
+   }
+
+   //block8
+if((kolizja(B, Image8)==true) &&
+   (Image8 -> Visible == true))
+   {
+    x = -x;
+    y = -y;
+    Image8 -> Visible = false;
+    score--;
+    if(score == 0)
+    {
+       TimerPilka -> Enabled = false;
+       B -> Visible = false;
+       Button1 -> Caption = "You win!";
+       Button1 -> Visible = true;
+    }
+   }
+
+   //block9
+if((kolizja(B, Image9)==true) &&
+   (Image9 -> Visible == true))
+   {
+    x = -x;
+    y = -y;
+    Image9 -> Visible = false;
+    score--;
+    if(score == 0)
+    {
+       TimerPilka -> Enabled = false;
+       B -> Visible = false;
+       Button1 -> Caption = "You win!";
+       Button1 -> Visible = true;
+    }
+   }
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::LTimerTimer(TObject *Sender)
+{
+  if(P -> Left > 10)
+  {
+   P -> Left -= 20;
+  }
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::RTimerTimer(TObject *Sender)
+{
+ if (P -> Left + P -> Width +10 < Tlo -> Width)
+ {
+ P -> Left += 20;
+ }
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key,
+      TShiftState Shift)
+{
+   if(Key == VK_LEFT)
+   {
+    LTimer -> Enabled = true;
+   }
+   if(Key == VK_RIGHT)
+   {
+    RTimer -> Enabled = true;
+   }
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormKeyUp(TObject *Sender, WORD &Key,
+      TShiftState Shift)
+{
+   if(Key == VK_LEFT)
+   {
+    LTimer -> Enabled = false;
+   }
+   if(Key == VK_RIGHT)
+   {
+    RTimer -> Enabled = false;
+   }
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+ x = -8;
+ y = -8;
+ score = 9;
+
+B -> Left = 50;
+B -> Top = 50;
+
+B -> Visible = true;
+
+TimerPilka -> Enabled = true;
+Button1 -> Visible = false;
+
+Image1 -> Visible = true;
+Image2 -> Visible = true;
+Image3 -> Visible = true;
+Image4 -> Visible = true;
+Image5 -> Visible = true;
+Image6 -> Visible = true;
+Image7 -> Visible = true;
+Image8 -> Visible = true;
+Image9 -> Visible = true;
+
+
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+//borders collision
+if(B -> Left -5 <= Tlo -> Left) x= -x;
+if(B -> Top -5 <= Tlo -> Top) y= -y;
+if(B -> Left + B -> Width +5 >= Tlo -> Width) x= -x;
+}
+//---------------------------------------------------------------------------
